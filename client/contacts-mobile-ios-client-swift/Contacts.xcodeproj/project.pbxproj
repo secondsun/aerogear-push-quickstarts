@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F47136619862A4000CAF0C2 /* AeroGearPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F47136519862A4000CAF0C2 /* AeroGearPush.framework */; };
-		6F47136719862A4000CAF0C2 /* AeroGearPush.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F47136519862A4000CAF0C2 /* AeroGearPush.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6F32733E198646CF0022D21C /* AeroGearPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32733D198646CF0022D21C /* AeroGearPush.framework */; };
+		6F32733F198646D00022D21C /* AeroGearPush.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32733D198646CF0022D21C /* AeroGearPush.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6F8E6A2E19853C120087C35B /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A2D19853C120087C35B /* ContactDetailsViewController.swift */; };
 		6F8E6A3219853DEA0087C35B /* ValidationTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */; };
 		6F8E6A3719853DF10087C35B /* BirthdateValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3319853DF10087C35B /* BirthdateValidationStrategy.swift */; };
@@ -47,7 +47,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F47136719862A4000CAF0C2 /* AeroGearPush.framework in Embed Frameworks */,
+				6F32733F198646D00022D21C /* AeroGearPush.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F47136519862A4000CAF0C2 /* AeroGearPush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = AeroGearPush.framework; path = "/Users/cvasilak/Library/Developer/Xcode/DerivedData/Contacts-bcobnhmrqblqhybztuauqmqkywpb/Build/Products/Debug-iphoneos/AeroGearPush.framework"; sourceTree = "<absolute>"; };
+		6F32733D198646CF0022D21C /* AeroGearPush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = AeroGearPush.framework; path = "/Users/cvasilak/Library/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos/AeroGearPush.framework"; sourceTree = "<absolute>"; };
 		6F8E6A2D19853C120087C35B /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailsViewController.swift; path = Controllers/ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationTextfield.swift; path = Utils/ValidationTextfield.swift; sourceTree = "<group>"; };
 		6F8E6A3319853DF10087C35B /* BirthdateValidationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdateValidationStrategy.swift; path = Utils/Validation/BirthdateValidationStrategy.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F47136619862A4000CAF0C2 /* AeroGearPush.framework in Frameworks */,
+				6F32733E198646CF0022D21C /* AeroGearPush.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,7 +123,7 @@
 		6FB96D011980D802001018FA = {
 			isa = PBXGroup;
 			children = (
-				6F47136519862A4000CAF0C2 /* AeroGearPush.framework */,
+				6F32733D198646CF0022D21C /* AeroGearPush.framework */,
 				6FB96D0C1980D802001018FA /* Contacts */,
 				6FB96D1F1980D802001018FA /* ContactsTests */,
 				6FB96D0B1980D802001018FA /* Products */,
@@ -453,6 +453,7 @@
 					"$(PROJECT_DIR)/aerogear-push-ios-registration/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-fgsrfudmlflzjyalruqpjociyofs/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bcobnhmrqblqhybztuauqmqkywpb/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -472,6 +473,7 @@
 					"$(PROJECT_DIR)/aerogear-push-ios-registration/build/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-fgsrfudmlflzjyalruqpjociyofs/Build/Products/Debug-iphoneos",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bcobnhmrqblqhybztuauqmqkywpb/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
