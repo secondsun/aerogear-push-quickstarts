@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F32733E198646CF0022D21C /* AeroGearPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32733D198646CF0022D21C /* AeroGearPush.framework */; };
-		6F32733F198646D00022D21C /* AeroGearPush.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F32733D198646CF0022D21C /* AeroGearPush.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6F14A7E919864FD800C48C12 /* AeroGearPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F14A7E219864FAE00C48C12 /* AeroGearPush.framework */; };
+		6F14A7EA19864FD800C48C12 /* AeroGearPush.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6F14A7E219864FAE00C48C12 /* AeroGearPush.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6F8E6A2E19853C120087C35B /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A2D19853C120087C35B /* ContactDetailsViewController.swift */; };
 		6F8E6A3219853DEA0087C35B /* ValidationTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */; };
 		6F8E6A3719853DF10087C35B /* BirthdateValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3319853DF10087C35B /* BirthdateValidationStrategy.swift */; };
@@ -31,6 +31,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6F14A7E119864FAE00C48C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6F71353119646266009B26D8;
+			remoteInfo = AeroGearPush;
+		};
+		6F14A7E319864FAE00C48C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6F71353C19646266009B26D8;
+			remoteInfo = AeroGearPushTests;
+		};
+		6F14A7E619864FBD00C48C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F71353019646266009B26D8;
+			remoteInfo = AeroGearPush;
+		};
+		6F14A7EB19864FD800C48C12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F71353019646266009B26D8;
+			remoteInfo = AeroGearPush;
+		};
 		6FB96D1D1980D802001018FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6FB96D021980D802001018FA /* Project object */;
@@ -47,7 +75,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6F32733F198646D00022D21C /* AeroGearPush.framework in Embed Frameworks */,
+				6F14A7EA19864FD800C48C12 /* AeroGearPush.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,7 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6F32733D198646CF0022D21C /* AeroGearPush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = AeroGearPush.framework; path = "/Users/cvasilak/Library/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos/AeroGearPush.framework"; sourceTree = "<absolute>"; };
+		6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AeroGearPush.xcodeproj; path = "aerogear-push-ios-registration/AeroGearPush.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		6F8E6A2D19853C120087C35B /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactDetailsViewController.swift; path = Controllers/ContactDetailsViewController.swift; sourceTree = "<group>"; };
 		6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationTextfield.swift; path = Utils/ValidationTextfield.swift; sourceTree = "<group>"; };
 		6F8E6A3319853DF10087C35B /* BirthdateValidationStrategy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdateValidationStrategy.swift; path = Utils/Validation/BirthdateValidationStrategy.swift; sourceTree = "<group>"; };
@@ -86,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F32733E198646CF0022D21C /* AeroGearPush.framework in Frameworks */,
+				6F14A7E919864FD800C48C12 /* AeroGearPush.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +128,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F14A7DC19864FAE00C48C12 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6F14A7E219864FAE00C48C12 /* AeroGearPush.framework */,
+				6F14A7E419864FAE00C48C12 /* AeroGearPushTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6F8E6A2F19853DC60087C35B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +160,6 @@
 		6FB96D011980D802001018FA = {
 			isa = PBXGroup;
 			children = (
-				6F32733D198646CF0022D21C /* AeroGearPush.framework */,
 				6FB96D0C1980D802001018FA /* Contacts */,
 				6FB96D1F1980D802001018FA /* ContactsTests */,
 				6FB96D0B1980D802001018FA /* Products */,
@@ -151,6 +187,7 @@
 				6FB96D111980D802001018FA /* ViewController.swift */,
 				6FB96D131980D802001018FA /* Main.storyboard */,
 				6FB96D161980D802001018FA /* Images.xcassets */,
+				6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */,
 				6FB96D0D1980D802001018FA /* Supporting Files */,
 			);
 			path = Contacts;
@@ -225,6 +262,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				6F14A7E719864FBD00C48C12 /* PBXTargetDependency */,
+				6F14A7EC19864FD800C48C12 /* PBXTargetDependency */,
 			);
 			name = Contacts;
 			productName = Contacts;
@@ -284,6 +323,12 @@
 			mainGroup = 6FB96D011980D802001018FA;
 			productRefGroup = 6FB96D0B1980D802001018FA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6F14A7DC19864FAE00C48C12 /* Products */;
+					ProjectRef = 6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6FB96D091980D802001018FA /* Contacts */,
@@ -291,6 +336,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6F14A7E219864FAE00C48C12 /* AeroGearPush.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AeroGearPush.framework;
+			remoteRef = 6F14A7E119864FAE00C48C12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6F14A7E419864FAE00C48C12 /* AeroGearPushTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = AeroGearPushTests.xctest;
+			remoteRef = 6F14A7E319864FAE00C48C12 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6FB96D081980D802001018FA /* Resources */ = {
@@ -346,6 +408,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6F14A7E719864FBD00C48C12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AeroGearPush;
+			targetProxy = 6F14A7E619864FBD00C48C12 /* PBXContainerItemProxy */;
+		};
+		6F14A7EC19864FD800C48C12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AeroGearPush;
+			targetProxy = 6F14A7EB19864FD800C48C12 /* PBXContainerItemProxy */;
+		};
 		6FB96D1E1980D802001018FA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6FB96D091980D802001018FA /* Contacts */;
