@@ -29,7 +29,7 @@ class ValidationTextfield: UITextField {
 
     func setup() {
         // subscribe to get notif for textfield events
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidEndEditing", name: UITextFieldTextDidChangeNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldDidEndEditing:", name: UITextFieldTextDidEndEditingNotification, object: self)
     }
 
     func validate() -> Bool {

@@ -17,7 +17,7 @@
 
 import Foundation
 
-@objc class BirthdateValidationStrategy: NSObject, ValidationStrategy {
+class BirthdateValidationStrategy: NSObject, ValidationStrategy {
 
     func validate(input: String) -> Bool {
         let dateFormatter = NSDateFormatter()

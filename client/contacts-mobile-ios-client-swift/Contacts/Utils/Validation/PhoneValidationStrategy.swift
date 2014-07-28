@@ -17,7 +17,7 @@
 
 import Foundation
 
-@objc class PhoneValidationStrategy: NSObject, ValidationStrategy {
+class PhoneValidationStrategy: NSObject, ValidationStrategy {
     
     func validate(input: String) -> Bool {
         let detector = NSDataDetector(types: NSTextCheckingType.PhoneNumber.toRaw(), error: nil)

@@ -21,6 +21,6 @@ import Foundation
 //       by the Interface Builder @IBOutlet mechanism
 @objc protocol ValidationStrategy {
 
-func validate(input: String) -> Bool
+    func validate(input: String) -> Bool
 
 }

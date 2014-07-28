@@ -17,14 +17,13 @@
 
 import Foundation
 
-@objc class EmailValidationStrategy: NSObject, ValidationStrategy {
+class EmailValidationStrategy: NSObject, ValidationStrategy {
 
     func validate(input: String) -> Bool {
         let detector = NSDataDetector(types: NSTextCheckingType.Link.toRaw(), error: nil)
         let matches = detector.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
 
         for match in matches as [NSTextCheckingResult] {
-            
             if match.resultType.toRaw() ==  NSTextCheckingType.Link.toRaw() && match.URL.absoluteString.rangeOfString("mailto:") {
                 return true;
             }

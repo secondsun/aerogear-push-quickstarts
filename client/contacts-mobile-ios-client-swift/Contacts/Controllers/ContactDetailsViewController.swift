@@ -56,6 +56,25 @@ class ContactDetailsViewController: UITableViewController {
     }
     
     @IBAction func save(sender: AnyObject) {
+        // enumare all textfields and ask them to validate themselves
+        
+        var invalidForm = false
+        
+        
+        for textfield in textfields {
+            if !textfield.validate() {
+                invalidForm = true
+                break
+            }
+        }
+        
+        // if invalid entries found, no need to continue
+        if invalidForm {
+            return
+        }
+        
+        // else time to create contact
+        
         if !contact {
             contact = Contact()
         }

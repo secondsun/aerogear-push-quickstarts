@@ -17,9 +17,9 @@
 
 import Foundation
 
-@objc class NameValidationStrategy: NSObject, ValidationStrategy {
+class NameValidationStrategy: NSObject, ValidationStrategy {
 
     func validate(input: String) -> Bool {
-        return input == ""
+        return input != ""
     }
 }
