@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // has already been fetched so we just ask the controller to
             // display the details screen for this Contact.
             if application.applicationState == .Inactive {
-                contactsController.displayDetailsForContactWithId(userInfo["id"] as NSNumber)
+                contactsController.displayDetailsForContactWithId(userInfo["id"] as NSString)
       
             } else {  // fetch it
                 // attempt to fetch new contact

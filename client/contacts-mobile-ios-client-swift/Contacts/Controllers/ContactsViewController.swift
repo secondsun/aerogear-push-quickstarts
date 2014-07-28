@@ -68,8 +68,12 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         }
     }
     
-    func displayDetailsForContactWithId(recId: NSNumber) {
-        
+    func displayDetailsForContactWithId(recId: NSString) {
+        let contact = contactWithId(recId.integerValue)
+
+        if contact {
+            performSegueWithIdentifier("EditContactSegue", sender: contact)
+        }
     }
     
     // MARK: - Table view data source
