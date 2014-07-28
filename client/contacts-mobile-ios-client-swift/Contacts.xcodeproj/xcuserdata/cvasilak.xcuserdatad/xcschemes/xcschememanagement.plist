@@ -4,22 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AeroGearPush.xcscheme_^#shared#^_</key>
+		<key>Contacts.xcscheme_^#shared#^_</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>0</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>6F71353019646266009B26D8</key>
+		<key>6FB96D091980D802001018FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F71353B19646266009B26D8</key>
+		<key>6FB96D1B1980D802001018FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
