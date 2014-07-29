@@ -82,9 +82,6 @@ class LoginViewController: UITableViewController {
                         println("successfully registered with UPS!")
                         
                         // if we reach here, time to move to the main Contacts view
-                        // // if we reach here, time to move to the main Contacts view
-                        //[self performSegueWithIdentifier:@"ContactsViewSegue" sender:self];
-                        
                         self.performSegueWithIdentifier("ContactsViewSegue", sender: self)
                     },
                     
@@ -92,6 +89,7 @@ class LoginViewController: UITableViewController {
                         var alert = UIAlertView(title: "Oops!", message: "Failed to register with UPS!", delegate: nil, cancelButtonTitle: "Bummer")
                         alert.show()
                     })
+                
             } else {
                 var alert = UIAlertView(title: "Oops!", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()

@@ -64,7 +64,6 @@ class ContactDetailsViewController: UITableViewController {
         for textfield in textfields {
             if !textfield.validate() {
                 invalidForm = true
-                break
             }
         }
         
