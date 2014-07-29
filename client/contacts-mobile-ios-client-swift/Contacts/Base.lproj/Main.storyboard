@@ -159,14 +159,6 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oYC-dl-UZK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="QYG-Ge-dOH">
-                    <connections>
-                        <outlet property="delegate" destination="cNq-gc-VDh" id="6cn-xL-FtI"/>
-                        <outlet property="searchContentsController" destination="cNq-gc-VDh" id="hqv-go-oE9"/>
-                        <outlet property="searchResultsDataSource" destination="cNq-gc-VDh" id="FZa-Ow-Ogu"/>
-                        <outlet property="searchResultsDelegate" destination="cNq-gc-VDh" id="HpP-MT-Peo"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="964" y="-525"/>
         </scene>

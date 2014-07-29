@@ -18,11 +18,15 @@
 import UIKit
 import AeroGearPush
 
-class ContactsViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, ContactDetailsViewControllerDelegate {
+class ContactsViewController: UITableViewController, UISearchBarDelegate, UISearchResultsUpdating, ContactDetailsViewControllerDelegate {
     
     var contacts = [String: [Contact]]()
+    var filteredContacts = [Contact]()
+    
     var contactsSectionTitles = [String]()
     
+    var searchController: UISearchController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,6 +38,21 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         // hide the back button, logout button is used instead
         self.navigationItem.hidesBackButton = true;
         
+        // setup search bar
+        let searchResultsController = UITableViewController(style: .Plain)
+        searchResultsController.tableView.dataSource = self
+        searchResultsController.tableView.delegate = self
+        
+        self.searchController = UISearchController(searchResultsController: searchResultsController)
+        searchController.searchResultsUpdater = self
+        self.searchController.searchBar.frame = CGRectMake(searchController.searchBar.frame.origin.x,searchController.searchBar.frame.origin.y, searchController.searchBar.frame.size.width, 44.0);
+        self.searchController.searchBar.placeholder = "Search for a Contact"
+        
+        self.searchController.searchBar.delegate = self
+        self.tableView.tableHeaderView = self.searchController.searchBar;
+        
+        self.definesPresentationContext = true;
+
         refresh()
     }
     
@@ -80,22 +99,38 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return contactsSectionTitles.count
+        if self.searchController.active {
+            return 1
+        } else {
+            return contactsSectionTitles.count
+        }
     }
     
     override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String!  {
-        return contactsSectionTitles[section]
+        if self.searchController.active {
+            return nil
+        } else {
+            return contactsSectionTitles[section]
+        }
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        let sectionTitle = contactsSectionTitles[section]
+        if self.searchController.active {
+            return filteredContacts.count
+        } else {
+            let sectionTitle = contactsSectionTitles[section]
         
-        return contacts[sectionTitle]!.count
+            return contacts[sectionTitle]!.count
+        }
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
-        // user-locale alphabet list
-        return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles
+        if self.searchController.active {
+            return nil
+        } else {
+            // user-locale alphabet list
+            return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles
+        }
     }
     
     override func tableView(tableView: UITableView!, sectionForSectionIndexTitle title: String!, atIndex index: Int) -> Int {
@@ -107,13 +142,20 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
 
         let sectionTitle = contactsSectionTitles[indexPath.section]
-        var contact = contacts[sectionTitle]![indexPath.row]
 
-        cell.textLabel.text = "\(contact.firstname!) \(contact.lastname!)"
-        cell.detailTextLabel.text = contact.email
+        var contact: Contact?
+        
+        if self.searchController.active {
+            contact = filteredContacts[indexPath.row]
+        } else {
+           contact = contacts[sectionTitle]![indexPath.row]
+        }
+
+        cell.textLabel.text = "\(contact!.firstname) \(contact!.lastname)"
+        cell.detailTextLabel.text = contact!.email
 
         return cell
     }
@@ -128,33 +170,56 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
 
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         
-        let sectionTitle = contactsSectionTitles[indexPath.section]
-        var contact = contacts[sectionTitle]![indexPath.row]
+        var contact:Contact?
+        
+        if self.searchController.active {
+            contact = filteredContacts[indexPath.row]
+        } else {
+            let sectionTitle = contactsSectionTitles[indexPath.section]
+            contact = contacts[sectionTitle]![indexPath.row]
+        }
         
         if editingStyle == .Delete {
-            ContactsNetworker.shared.DELETE("/contacts/\(contact.recId!)", parameters: contact.asDictionary()) { (response, result, error) in
+            ContactsNetworker.shared.DELETE("/contacts/\(contact!.recId!)", parameters: contact!.asDictionary()) { (response, result, error) in
                 
                 if error {
                     var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                     alert.show()
                     
                 } else { // success
-
-                    // the section that this contact resides
-                    let section = self.contactsSectionTitles[indexPath.section]
+                    
+                    var section:String!
+                    var index:Int!
+                    
+                    // if delete was performed under search mode
+                    if self.searchController.active {
+                        // remove from the filter list
+                        self.filteredContacts.removeAtIndex(indexPath.row)
+                        
+                        // determine the section/row in the local model using the contact id
+                        var (key, row) = self.indexOfContactWithId(contact!.recId)!
+                        section = key
+                        index = row
+                        
+                    } else {
+                        // determine the section/row in the local model using the indexpath
+                        section = self.contactsSectionTitles[indexPath.section]
+                        index = indexPath.row
+                    }
 
                     // the contacts in that section
                     var list = self.contacts[section]!
                     // delete it from local model
-                    list.removeAtIndex(indexPath.row)
+                    list.removeAtIndex(index)
                     self.contacts[section] = list
 
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                     
                     // if it was the last contact in the section, delete the section too
                     if list.count == 0 {
-                        self.contactsSectionTitles.removeAtIndex(indexPath.section)
                         self.contacts.removeValueForKey(section)
+                        // determine the index of this section
+                        self.contactsSectionTitles.removeAtIndex(find(self.contactsSectionTitles, section)!)
                     }
                     
                     tableView.reloadData()
@@ -236,7 +301,32 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             }
         };
     }
+    
+    
+    // MARK: - UISearchResultsUpdating delegate methods
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController!) {
+        let searchString = searchController.searchBar.text
 
+        filteredContacts.removeAll(keepCapacity: false)
+        
+        for list in contacts.values {
+            var filteredlist = list.filter { $0.firstname.containsIgnoreCase(searchString) || $0.lastname.containsIgnoreCase(searchString)}
+            filteredContacts += filteredlist
+        }
+        
+        // ask search results table to refresh
+        let tableviewController = searchController.searchResultsController as UITableViewController
+        tableviewController.tableView.reloadData()
+    }
+    
+    // MARK: - UISearchBarDelegate delegate methods
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar!) {
+        self.searchController.active = false
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Seque methods
     
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
@@ -306,6 +396,18 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             for contact in list {
                 if contact.recId == recId {
                     return contact
+                }
+            }
+        }
+        
+        return nil
+    }
+    
+    func indexOfContactWithId(recId: NSNumber) -> (section: String, row: Int)? {
+        for (section, list) in contacts {
+            for (index, contact) in enumerate(list) {
+                if contact.recId == recId {
+                    return (section, index)
                 }
             }
         }
