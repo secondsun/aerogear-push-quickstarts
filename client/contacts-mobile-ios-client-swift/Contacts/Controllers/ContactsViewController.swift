@@ -358,10 +358,22 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: - Utility methods
     
     func activeContactFromCell(cell: UITableViewCell) -> Contact {
-        let indexPath = self.tableView.indexPathForCell(cell)
+        var contact:Contact!
         
-        let sectionTitle = contactsSectionTitles[indexPath.section]
-        return contacts[sectionTitle]![indexPath.row]
+        if self.searchController.active {
+            let tableViewController = self.searchController.searchResultsController as UITableViewController
+            let indexPath = tableViewController.tableView.indexPathForCell(cell)
+            
+            contact = filteredContacts[indexPath.row]
+            
+        } else {
+            let indexPath = self.tableView.indexPathForCell(cell)
+            let sectionTitle = contactsSectionTitles[indexPath.section]
+            
+            contact = contacts[sectionTitle]![indexPath.row]
+        }
+
+        return contact
     }
     
     func addContact(contact: Contact) {
