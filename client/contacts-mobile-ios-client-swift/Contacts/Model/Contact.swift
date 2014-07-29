@@ -19,12 +19,12 @@ import Foundation
 
 public class Contact {
     
-    var recId : NSNumber?
-    var firstname: String?
-    var lastname: String?
-    var phoneNumber: String?
-    var email: String?
-    var birthdate: String?
+    var recId : NSNumber!
+    var firstname: String!
+    var lastname: String!
+    var phoneNumber: String!
+    var email: String!
+    var birthdate: String!
     
     init() {
     }

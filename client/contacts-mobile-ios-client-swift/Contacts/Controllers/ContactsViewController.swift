@@ -20,7 +20,8 @@ import AeroGearPush
 
 class ContactsViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate, ContactDetailsViewControllerDelegate {
     
-    var contacts = [Contact]()
+    var contacts = [String: [Contact]]()
+    var contactsSectionTitles = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 
             } else { // success
                 // add to model
-                self.contacts += Contact(fromDictionary: result as [String: AnyObject] )
+                self.addContact(Contact(fromDictionary: result as [String: AnyObject]))
                 
                 // refresh tableview
                 self.tableView.reloadData()
@@ -79,17 +80,37 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return 1
+        return contactsSectionTitles.count
+    }
+    
+    override func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String!  {
+        return contactsSectionTitles[section]
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        let sectionTitle = contactsSectionTitles[section]
+        
+        return contacts[sectionTitle]!.count
+    }
+    
+    override func sectionIndexTitlesForTableView(tableView: UITableView!) -> [AnyObject]! {
+        // user-locale alphabet list
+        return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles
+    }
+    
+    override func tableView(tableView: UITableView!, sectionForSectionIndexTitle title: String!, atIndex index: Int) -> Int {
+        if let index = find(contactsSectionTitles, title) {
+            return index
+        }
+        
+        return NSNotFound
     }
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-        
-        var contact = contacts[indexPath.row]
+
+        let sectionTitle = contactsSectionTitles[indexPath.section]
+        var contact = contacts[sectionTitle]![indexPath.row]
 
         cell.textLabel.text = "\(contact.firstname!) \(contact.lastname!)"
         cell.detailTextLabel.text = contact.email
@@ -97,17 +118,18 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         return cell
     }
 
-    // MARK: - Table delete
+    override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!) {
+        performSegueWithIdentifier("EditContactSegue", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
     
     override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
         return true
     }
 
-    // Override to support editing the table view.
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         
-        let contact = self.contacts[indexPath.row]
+        let sectionTitle = contactsSectionTitles[indexPath.section]
+        var contact = contacts[sectionTitle]![indexPath.row]
         
         if editingStyle == .Delete {
             ContactsNetworker.shared.DELETE("/contacts/\(contact.recId!)", parameters: contact.asDictionary()) { (response, result, error) in
@@ -117,9 +139,25 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                     alert.show()
                     
                 } else { // success
-                    // Delete the row from the data source
-                    self.contacts.removeAtIndex(indexPath.row)
+
+                    // the section that this contact resides
+                    let section = self.contactsSectionTitles[indexPath.section]
+
+                    // the contacts in that section
+                    var list = self.contacts[section]!
+                    // delete it from local model
+                    list.removeAtIndex(indexPath.row)
+                    self.contacts[section] = list
+
                     tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                    
+                    // if it was the last contact in the section, delete the section too
+                    if list.count == 0 {
+                        self.contactsSectionTitles.removeAtIndex(indexPath.section)
+                        self.contacts.removeValueForKey(section)
+                    }
+                    
+                    tableView.reloadData()
                 }
             }
         }
@@ -144,11 +182,10 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 // dismiss modal dialog
                 self.dismissViewControllerAnimated(true, completion:nil);
                     
-                
                 // add to our local modal
                 if (!contact.recId) {
                     contact.recId = (result as [String: AnyObject])["id"] as? NSNumber;
-                    self.contacts += contact
+                    self.addContact(contact)
                 }
                 
                 // ask table to refresh
@@ -175,13 +212,13 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 alert.show()
 
             } else { // success
-                var contacts = [Contact]()
+                // clear any existing data
+                self.contacts.removeAll(keepCapacity: false)
+                self.contactsSectionTitles.removeAll(keepCapacity: false)
                 
                 for contact in result as [[String: AnyObject]] {
-                    contacts += Contact(fromDictionary: contact)
+                    self.addContact(Contact(fromDictionary: contact))
                 }
-                
-                self.contacts = contacts
                 
                 self.tableView.reloadData()
             }
@@ -201,6 +238,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     }
 
     // MARK: - Seque methods
+    
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "AddContactSegue" || segue.identifier == "EditContactSegue" {
             
@@ -228,15 +266,47 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     }
     
     // MARK: - Utility methods
+    
     func activeContactFromCell(cell: UITableViewCell) -> Contact {
         let indexPath = self.tableView.indexPathForCell(cell)
-        return contacts[indexPath.row]
+        
+        let sectionTitle = contactsSectionTitles[indexPath.section]
+        return contacts[sectionTitle]![indexPath.row]
+    }
+    
+    func addContact(contact: Contact) {
+        // determine section by first letter of "first name"
+        let letter = contact.firstname!.substringToIndex(advance(contact.firstname!.startIndex, 1)).uppercaseString
+
+        // if the section exist
+        if var contactsInSection = contacts[letter] {
+            // add it
+            contactsInSection += contact
+            contactsInSection.sort({ $0.firstname < $1.firstname })
+                
+            contacts[letter] = contactsInSection
+            
+        } else {
+            // create it
+            contactsSectionTitles += letter
+            // sort newly inserted section name
+            contactsSectionTitles.sort({ $0 < $1 })
+         
+            // create arr to hold contacts in section
+            var contactsInSection = [Contact]()
+            contactsInSection += contact
+            
+            // assign it
+            contacts[letter] = contactsInSection
+        }
     }
     
     func contactWithId(recId: NSNumber) -> Contact? {
-        for contact in contacts {
-            if contact.recId == recId {
-                return contact
+        for list in contacts.values {
+            for contact in list {
+                if contact.recId == recId {
+                    return contact
+                }
             }
         }
         
