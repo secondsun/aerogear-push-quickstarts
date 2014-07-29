@@ -71,7 +71,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         ContactsNetworker.shared.GET("/contacts/\(recId)", parameters: nil) {(response, result, error) in
             
             if error {
-                var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
+                var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
                 
             } else { // success
@@ -183,7 +183,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             ContactsNetworker.shared.DELETE("/contacts/\(contact!.recId!)", parameters: contact!.asDictionary()) { (response, result, error) in
                 
                 if error {
-                    var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
+                    var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                     alert.show()
                     
                 } else { // success
@@ -236,11 +236,11 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func contactDetailsViewController(controller: ContactDetailsViewController, didSave contact: Contact) {
         // since completionhandler logic is common, define upfront
-        let completionHandler = { (response: NSURLResponse, result: AnyObject?, error: NSError?) -> () in
+        let completionHandler = { (response: NSURLResponse!, result: AnyObject!, error: NSError!) -> () in
             self.refreshControl.endRefreshing()
             
             if error {
-                var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
+                var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
                 
             } else { // success
@@ -273,9 +273,9 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             self.refreshControl.endRefreshing()
             
             if error {
-                var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
+                var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
-
+                
             } else { // success
                 // clear any existing data
                 self.contacts.removeAll(keepCapacity: false)
@@ -293,9 +293,9 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     @IBAction func logoutPressed(sender: AnyObject!) {
         ContactsNetworker.shared.logout()  {(response, result, error) in
             if error {
-                var alert = UIAlertView(title: "Oops!", message: error!.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
+                var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
-                
+
             } else {
                 self.navigationController.popViewControllerAnimated(true)
             }

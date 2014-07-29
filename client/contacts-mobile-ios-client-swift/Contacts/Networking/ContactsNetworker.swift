@@ -31,7 +31,7 @@ class ContactsNetworker: RestNetworker {
             return Static._instance
     }
     
-    func loginWithUsername(username: String, password: String, completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) {
+    func loginWithUsername(username: String, password: String, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) {
         self.username = username
         
         let request = NSMutableURLRequest(URL: serverURL.URLByAppendingPathComponent("/security/user/info"))
@@ -49,7 +49,7 @@ class ContactsNetworker: RestNetworker {
         task.resume()
     }
 
-    func logout(completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) {
+    func logout(completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) {
         super.POST("/security/logout", parameters: nil, completionHandler: completionHandler)
     }
     

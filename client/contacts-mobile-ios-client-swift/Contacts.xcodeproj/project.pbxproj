@@ -23,7 +23,6 @@
 		6FB96D171980D802001018FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB96D161980D802001018FA /* Images.xcassets */; };
 		6FB96D231980D802001018FA /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB96D221980D802001018FA /* ContactsTests.swift */; };
 		6FBE674D1982413500E57BC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE674C1982413500E57BC5 /* LoginViewController.swift */; };
-		6FCA6B32198117FC00745132 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA6B31198117FC00745132 /* User.swift */; };
 		6FCA6B3419811C1700745132 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA6B3319811C1700745132 /* Contact.swift */; };
 		6FCA6B3B19813FCA00745132 /* RestNetworker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA6B3A19813FCA00745132 /* RestNetworker.swift */; };
 		6FF19A751981678400BEDF44 /* ContactsNetworker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF19A741981678400BEDF44 /* ContactsNetworker.swift */; };
@@ -102,7 +101,6 @@
 		6FB96D211980D802001018FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FB96D221980D802001018FA /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		6FBE674C1982413500E57BC5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
-		6FCA6B31198117FC00745132 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		6FCA6B3319811C1700745132 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = Model/Contact.swift; sourceTree = "<group>"; };
 		6FCA6B3A19813FCA00745132 /* RestNetworker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestNetworker.swift; path = Networking/RestNetworker.swift; sourceTree = "<group>"; };
 		6FF19A741981678400BEDF44 /* ContactsNetworker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContactsNetworker.swift; path = Networking/ContactsNetworker.swift; sourceTree = "<group>"; };
@@ -232,7 +230,6 @@
 		6FCA6B30198117CE00745132 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				6FCA6B31198117FC00745132 /* User.swift */,
 				6FCA6B3319811C1700745132 /* Contact.swift */,
 			);
 			name = Model;
@@ -393,7 +390,6 @@
 				6F8E6A3919853DF10087C35B /* NameValidationStrategy.swift in Sources */,
 				6FF740741983825F002F003A /* ContactsViewController.swift in Sources */,
 				6FF19A751981678400BEDF44 /* ContactsNetworker.swift in Sources */,
-				6FCA6B32198117FC00745132 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

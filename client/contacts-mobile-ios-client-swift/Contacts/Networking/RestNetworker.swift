@@ -39,7 +39,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         self.session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
     }
     
-    func GET(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+    func GET(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         
         let request = NSMutableURLRequest(URL: serverURL.URLByAppendingPathComponent(resource))
         
@@ -58,7 +58,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         return task
     }
     
-    func POST(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+    func POST(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         
         let request = NSMutableURLRequest(URL: serverURL.URLByAppendingPathComponent(resource))
         
@@ -77,9 +77,8 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         return task
     }
     
-    func PUT(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+    func PUT(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         
-        println(resource)
         let request = NSMutableURLRequest(URL: serverURL.URLByAppendingPathComponent(resource))
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -91,10 +90,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
             request.HTTPBody = postData
         }
         
-        println("sending ----->")
         let str = NSString(data: request.HTTPBody, encoding: NSUTF8StringEncoding)
-        println(str)
-        println("--------------")
         
         let task = dataTaskWithRequest(request, completionHandler);
         task.resume()
@@ -102,7 +98,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         return task
     }
     
-    func DELETE(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+    func DELETE(resource: String, parameters: AnyObject!, completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask {
         
         let request = NSMutableURLRequest(URL: serverURL.URLByAppendingPathComponent(resource))
         
@@ -122,7 +118,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
     }
 
     func dataTaskWithRequest(request: NSURLRequest,
-        completionHandler: ((NSURLResponse, AnyObject?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+        completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask! {
             
             let task = session.dataTaskWithRequest(request) {(data, response, error) in
                 if !error {
@@ -135,7 +131,6 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
                            result = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error:nil)
                             
                             let json = NSString(data: data, encoding: NSUTF8StringEncoding)
-                            println(json)
                         }
                         
                         completionHandler(response, result, error);
