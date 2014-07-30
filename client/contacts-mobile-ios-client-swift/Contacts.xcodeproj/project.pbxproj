@@ -526,7 +526,7 @@
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB3F6C5F-3CD1-4D34-96EC-EAB062D134AF";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -546,7 +546,7 @@
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "AB3F6C5F-3CD1-4D34-96EC-EAB062D134AF";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
