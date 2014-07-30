@@ -18,7 +18,6 @@
 		6F8E6A3A19853DF10087C35B /* PhoneValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3619853DF10087C35B /* PhoneValidationStrategy.swift */; };
 		6F8E6A3C19853ED40087C35B /* ValidationStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6A3B19853ED40087C35B /* ValidationStrategy.swift */; };
 		6FB96D101980D802001018FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB96D0F1980D802001018FA /* AppDelegate.swift */; };
-		6FB96D121980D802001018FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB96D111980D802001018FA /* ViewController.swift */; };
 		6FB96D151980D802001018FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FB96D131980D802001018FA /* Main.storyboard */; };
 		6FB96D171980D802001018FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FB96D161980D802001018FA /* Images.xcassets */; };
 		6FB96D231980D802001018FA /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB96D221980D802001018FA /* ContactsTests.swift */; };
@@ -94,7 +93,6 @@
 		6FB96D0A1980D802001018FA /* Contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Contacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FB96D0E1980D802001018FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FB96D0F1980D802001018FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6FB96D111980D802001018FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6FB96D141980D802001018FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FB96D161980D802001018FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6FB96D1C1980D802001018FA /* ContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,7 +181,6 @@
 				6FBE674B1982411300E57BC5 /* Controllers */,
 				6F8E6A2F19853DC60087C35B /* Utils */,
 				6FB96D0F1980D802001018FA /* AppDelegate.swift */,
-				6FB96D111980D802001018FA /* ViewController.swift */,
 				6FB96D131980D802001018FA /* Main.storyboard */,
 				6FB96D161980D802001018FA /* Images.xcassets */,
 				6F14A7DB19864FAE00C48C12 /* AeroGearPush.xcodeproj */,
@@ -381,7 +378,6 @@
 				6FBE674D1982413500E57BC5 /* LoginViewController.swift in Sources */,
 				6FCA6B3419811C1700745132 /* Contact.swift in Sources */,
 				6F8E6A3A19853DF10087C35B /* PhoneValidationStrategy.swift in Sources */,
-				6FB96D121980D802001018FA /* ViewController.swift in Sources */,
 				6F755F3019879B8600069842 /* Utils.swift in Sources */,
 				6FCA6B3B19813FCA00745132 /* RestNetworker.swift in Sources */,
 				6F8E6A3819853DF10087C35B /* EmailValidationStrategy.swift in Sources */,
