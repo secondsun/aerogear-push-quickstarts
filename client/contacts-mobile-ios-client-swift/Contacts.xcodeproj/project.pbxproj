@@ -140,6 +140,7 @@
 			children = (
 				6F8E6A3019853DD70087C35B /* Validation */,
 				6F755F2F19879B8600069842 /* Utils.swift */,
+				6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -181,7 +182,6 @@
 				6FCA6B3919813FA000745132 /* Networking */,
 				6FBE674B1982411300E57BC5 /* Controllers */,
 				6F8E6A2F19853DC60087C35B /* Utils */,
-				6F8E6A3119853DEA0087C35B /* ValidationTextfield.swift */,
 				6FB96D0F1980D802001018FA /* AppDelegate.swift */,
 				6FB96D111980D802001018FA /* ViewController.swift */,
 				6FB96D131980D802001018FA /* Main.storyboard */,
@@ -516,13 +516,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/aerogear-push-ios-registration/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-fgsrfudmlflzjyalruqpjociyofs/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bcobnhmrqblqhybztuauqmqkywpb/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -536,13 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/aerogear-push-ios-registration/build/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-fgsrfudmlflzjyalruqpjociyofs/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bcobnhmrqblqhybztuauqmqkywpb/Build/Products/Debug-iphoneos",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Contacts-bdrddscghciztifhvmjlhsnhrevd/Build/Products/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Contacts/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
