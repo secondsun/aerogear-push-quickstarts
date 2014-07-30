@@ -80,11 +80,11 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 
                 // refresh tableview
                 self.tableView.reloadData()
-                
-                // IMPORTANT:
-                // always let the system know we are done so 'UI snapshot' can be taken
-                completionHandler(.NewData)
             }
+            
+            // IMPORTANT:
+            // always let the system know we are done so 'UI snapshot' can be taken
+            completionHandler(.NewData)
         }
     }
     
@@ -307,7 +307,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     
     func updateSearchResultsForSearchController(searchController: UISearchController!) {
         let searchString = searchController.searchBar.text
-
+        
         filteredContacts.removeAll(keepCapacity: false)
         
         for list in contacts.values {

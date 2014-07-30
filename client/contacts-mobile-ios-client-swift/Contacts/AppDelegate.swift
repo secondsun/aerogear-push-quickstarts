@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // display the details screen for this Contact.
             if application.applicationState == .Inactive {
                 contactsController.displayDetailsForContactWithId(userInfo["id"] as NSString)
-      
+                completionHandler(.NoData)
+                
             } else {  // fetch it
                 // attempt to fetch new contact
                 contactsController.performFetchWithUserInfo(userInfo, completionHandler)
