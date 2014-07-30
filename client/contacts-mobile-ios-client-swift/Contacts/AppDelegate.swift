@@ -27,17 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: .Alert | .Badge | .Sound, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
-        if let options = launchOptions {
-            if let option : NSDictionary = options[UIApplicationLaunchOptionsRemoteNotificationKey] as? NSDictionary {
-                let defaults: NSUserDefaults = NSUserDefaults.standardUserDefaults();
-                if let aps : NSDictionary = option["aps"] as? NSDictionary {
-                    if let alert : String = aps["alert"] as? String {
-                        defaults.setObject(alert, forKey: "message_received")
-                        defaults.synchronize()
-                    }
-                }
-            }
-        }
+
         return true
     }
 
