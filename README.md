@@ -33,7 +33,7 @@ _Note: These instructions assume you are working with a released version of the 
 
 3. Run
 
-`mvn clean install -DrepositoryId=jboss-earlyaccess-repository -DrepositoryId=jboss-ga-repository --settings settings.xml`
+`mvn clean install -DrepositoryId=jboss-earlyaccess-repository -DrepositoryId=jboss-ga-repository --settings quickstarts-settings.xml`
 
 _Note: On Maven 3.2.2 there is a regression and improssible to provide the `--settings` option. Details are [here](https://jira.codehaus.org/browse/MNG-5663)._
 
