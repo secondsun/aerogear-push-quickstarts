@@ -142,7 +142,7 @@ public class ContactActivity extends ActionBarActivity {
             protected void onPostExecute(Boolean registered) {
                 dialog.dismiss();
                 if (registered) {
-                    if(contact.getId() == null) {
+                    if (contact.getId() == null) {
                         Toast.makeText(getApplicationContext(), getString(R.string.contact_added), LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(getApplicationContext(), getString(R.string.contact_updated), LENGTH_SHORT).show();
@@ -162,9 +162,18 @@ public class ContactActivity extends ActionBarActivity {
             if (textView.getText().toString().length() < 1) {
                 textView.setError("Can not be blank");
                 valid = false;
+            } else {
+                if ((textView.getId() == R.id.phone) && !(isValidPhone(textView.getText().toString()))) {
+                    String errorMessage = "Please use a standard US formats. And remember the area code and prefix may not start with 1.";
+                    textView.setError(errorMessage);
+                }
             }
         }
         return valid;
+    }
+
+    private boolean isValidPhone(String phoneNumber) {
+        return phoneNumber.matches("^\\([2-9]\\d{2}\\) \\d{3}\\-\\d{4}$");
     }
 
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
