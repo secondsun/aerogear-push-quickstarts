@@ -160,11 +160,11 @@ public class ContactActivity extends ActionBarActivity {
         List<EditText> componentsToValidate = Arrays.asList(firstName, lastName, phone, email, birthDate);
         for (TextView textView : componentsToValidate) {
             if (textView.getText().toString().length() < 1) {
-                textView.setError("Can not be blank");
+                textView.setError(getString(R.string.cannot_blank));
                 valid = false;
             } else {
                 if ((textView.getId() == R.id.phone) && !(isValidPhone(textView.getText().toString()))) {
-                    String errorMessage = "Please use a standard US formats. And remember the area code and prefix may not start with 1.";
+                    String errorMessage = getString(R.string.use_phone_us_format);
                     textView.setError(errorMessage);
                 }
             }

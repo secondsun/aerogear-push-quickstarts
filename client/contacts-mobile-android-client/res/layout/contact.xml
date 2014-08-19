@@ -19,7 +19,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Enter a first name"/>
+                android:hint="@string/hint_first_name"/>
 
         <TextView
                 android:layout_width="fill_parent"
@@ -31,7 +31,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:hint="Enter a last name"/>
+                android:hint="@string/hint_last_name"/>
 
         <TextView
                 android:layout_width="fill_parent"
@@ -43,7 +43,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
-                android:hint="(XXX) XXX-XXXX"/>
+                android:hint="@string/hint_phone"/>
 
         <TextView
                 android:layout_width="fill_parent"
@@ -55,7 +55,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
-                android:hint="name@company.domain"/>
+                android:hint="@string/hint_email"/>
 
         <TextView
                 android:layout_width="fill_parent"

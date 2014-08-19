@@ -26,4 +26,12 @@
     <string name="deleting_contacts">Deleting contact</string>
     <string name="saving_contact">Saving contact</string>
     <string name="contact_updated">Contact updated</string>
+    <string name="cannot_blank">Can not be blank</string>
+    <string name="use_phone_us_format">Please use a standard US formats. And remember the area code and prefix may not
+        start with 1.
+    </string>
+    <string name="hint_first_name">Enter a first name</string>
+    <string name="hint_last_name">Enter a last name</string>
+    <string name="hint_phone">(XXX) XXX-XXXX</string>
+    <string name="hint_email">name@company.domain</string>
 </resources>
