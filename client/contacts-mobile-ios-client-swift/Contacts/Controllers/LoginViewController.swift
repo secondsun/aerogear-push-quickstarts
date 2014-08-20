@@ -21,9 +21,17 @@ class LoginViewController: UITableViewController {
     
     @IBOutlet var usernameTxtField: UITextField!
     @IBOutlet var passwordTxtField: UITextField!
+    @IBOutlet var loginButtonBarItem: UIBarButtonItem!
     
+    var activityIndicatorBarItem: UIBarButtonItem!
+    var activityIndicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup progress view
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activityIndicatorBarItem = UIBarButtonItem(customView: activityIndicator)
     }
     
     // MARK: - Action Methods
@@ -39,6 +47,9 @@ class LoginViewController: UITableViewController {
 
             return
         }
+        
+        // show progress view
+        startProgressAnimation()
         
         ContactsNetworker.shared.loginWithUsername(username, password: password) {(response, result, error) in
             if !(error != nil) {
@@ -80,18 +91,40 @@ class LoginViewController: UITableViewController {
                         
                         // if we reach here, time to move to the main Contacts view
                         self.performSegueWithIdentifier("ContactsViewSegue", sender: self)
+                        
+                        self.stopProgressAnimation()
                     },
                     
                     failure: {(error: NSError!) in
                         var alert = UIAlertView(title: "Oops!", message: "Failed to register with UPS!", delegate: nil, cancelButtonTitle: "Bummer")
                         alert.show()
+                        
+                        self.stopProgressAnimation()
                     })
                 
             } else {
                 var alert = UIAlertView(title: "Oops!", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
+                
+                self.stopProgressAnimation()
             }
         }
+    }
+    
+    // MARK: - Utility methods to display progress view
+    
+    func startProgressAnimation() {
+        // assign the progress view to the navigator controller
+        navigationItem.rightBarButtonItem = activityIndicatorBarItem;
+
+        activityIndicator.startAnimating()
+    }
+    
+    func stopProgressAnimation() {
+        activityIndicator.stopAnimating()
+
+        // replace with login button upon stop
+        navigationItem.rightBarButtonItem = loginButtonBarItem;
     }
 }
 
