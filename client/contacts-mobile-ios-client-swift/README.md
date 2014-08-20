@@ -5,24 +5,26 @@ Level: Beginner
 Technologies: Swift, iOS  
 Summary: A Contacts CRUD mobile application with Push notification integration.  
 Target Product: Mobile  
-Product Versions: EAP 6.1, EAP 6.2, EAP 6.3  
-Source: https://github.com/aerogear/aerogear-push-quickstarts/client/contacts-mobile-ios-client-swift
+Product Version: MP 1.0  
+Source: https://github.com/aerogear/aerogear-push-quickstarts/tree/swift/client/contacts-mobile-ios-client-swift
 
 What is it?
 -----------
 
-This project is an iOS mobile front-end to the [Contacts](https://github.com/jboss-developer/jboss-wfk-quickstarts/contacts-mobile-picketlink-secured) server application found in the [quickstarts](https://github.com/jboss-developer/jboss-wfk-quickstarts) of the Red Hat [JBoss Web Framework Kit](http://www.jboss.org/jdf/). All CRUD features are supported, as well as integration with the Push notification mechanism to instantly retrieve a new Contact when it is created on the server. A video demonstrating the application 'in-action' can be found [here](https://vimeo.com/96095487). 
+This project is an iOS mobile front-end to the [Contacts](https://github.com/aerogear/aerogear-push-quickstarts/contacts-mobile-picketlink-secured) server application found in the [quickstarts](https://github.com/aerogear/aerogear-push-quickstarts) of the Red Hat [JBoss Web Framework Kit](http://www.jboss.org/jdf/). All CRUD features are supported, as well as integration with the Push notification mechanism to instantly retrieve a new Contact when it is created on the server. A video demonstrating the application 'in-action' can be found [here](https://vimeo.com/96095487). 
+
+The application is written in [Swift](https://developer.apple.com/swift/) and uses the [Push SDK Swift](https://github.com/aerogear/aerogear-ios-push/tree/swift) port for registering to the UnifiedPush Server.
 
 System requirements
 -------------------
 - iOS 8.X
-- Xcode version 6.0.beta4
+- Xcode version 6 Beta 6
 
 
 Pre-requisites
 ---------
 
-* Both the [Contacts](https://github.com/jboss-developer/jboss-wfk-quickstarts/contacts-mobile-picketlink-secured) and the [AeroGear UnifiedPush Server](https://github.com/aerogear/aerogear-unifiedpush-server/tree/0.10.x) applications up and running. Follow the documentation of each respective project to set them up.
+* Both the [Contacts](https://github.com/aerogear/aerogear-push-quickstarts/contacts-mobile-picketlink-secured) and the [AeroGear UnifiedPush Server](https://github.com/aerogear/aerogear-unifiedpush-server) applications up and running. Follow the documentation of each respective project to set them up.
 * A valid configured variant on the UPS admin console as well as a valid Apple Provisioning profile because you will need to test on device (Push notifications are not available on simulator). Follow the documentation on the [UPS guide](http://aerogear.org/docs/unifiedpush/aerogear-push-ios/) to set them up.
 * Replace the name of the '_Bundle ID_ ' with the name that you have associated with your certificate. 
 Click on the 'Contacts target -> General' and modify the _Bundle Identifier_:
@@ -75,7 +77,7 @@ Clicking a Contact reveals the edit screen where you can modify his/her details.
 Receiving Notifications
 ----------------------
 
-To test that you can successfully receive notifications when a new contact is created, open the web interface of the application (you can also use the [Android variant](https://github.com/aerogear/aerogear-push-quickstarts/client/android)) and try to add a new Contact. Once done, and if the application is successfully configured, immediately you will see the notification popping up on the screen.
+To test that you can successfully receive notifications when a new contact is created, open the web interface of the application (you can also use the [Android variant](https://github.com/aerogear/aerogear-push-quickstarts/tree/master/client/contacts-mobile-android-client)) and try to add a new Contact. Once done, and if the application is successfully configured, immediately you will see the notification popping up on the screen.
 
 ![contact details](doc/notification.png)
 
