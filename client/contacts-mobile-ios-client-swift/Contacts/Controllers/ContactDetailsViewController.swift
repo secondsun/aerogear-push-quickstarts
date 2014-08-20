@@ -38,12 +38,20 @@ class ContactDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup a UIDatePicker when clicked on the date field
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        datePicker.addTarget(self, action: "updateDateTextField:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.birthdateTxtField.inputView = datePicker
+
         if let contact = self.contact {
             firstnameTxtField.text = contact.firstname
             lastnameTxtField.text = contact.lastname
             phoneTxtField.text = contact.phoneNumber
             emailTxtField.text = contact.email
             birthdateTxtField.text = contact.birthdate
+            datePicker.date = dateFromString(birthdateTxtField.text)
         }
         
         textfields = [firstnameTxtField, lastnameTxtField, phoneTxtField, emailTxtField, birthdateTxtField]
@@ -87,5 +95,26 @@ class ContactDetailsViewController: UITableViewController {
         // call delegate to add it
         self.delegate?.contactDetailsViewController(self, didSave: contact)
     }
-
+    
+    func updateDateTextField(sender: AnyObject!) {
+        let picker = self.birthdateTxtField.inputView as UIDatePicker
+        
+        self.birthdateTxtField.text = stringFromDate(picker.date)
+    }
+    
+    // MARK: - Date utility methods
+    
+    func dateFromString(date: String) -> NSDate! {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter.dateFromString(date)
+    }
+    
+    func stringFromDate(date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        return dateFormatter.stringFromDate(date)
+    }
 }
