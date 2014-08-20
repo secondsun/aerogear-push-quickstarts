@@ -25,7 +25,7 @@ class BirthdateValidationStrategy: NSObject, ValidationStrategy {
     
         let date = dateFormatter.dateFromString(input)
 
-        if date { // if successfully parsed
+        if date != nil { // if successfully parsed
             return true;
         }
     

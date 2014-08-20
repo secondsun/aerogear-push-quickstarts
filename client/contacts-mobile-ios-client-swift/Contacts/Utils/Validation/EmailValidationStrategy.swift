@@ -24,7 +24,7 @@ class EmailValidationStrategy: NSObject, ValidationStrategy {
         let matches = detector.matchesInString(input, options:.ReportCompletion, range:NSMakeRange(0, input.utf16Count));
 
         for match in matches as [NSTextCheckingResult] {
-            if match.resultType.toRaw() ==  NSTextCheckingType.Link.toRaw() && match.URL.absoluteString.rangeOfString("mailto:") {
+            if match.resultType.toRaw() ==  NSTextCheckingType.Link.toRaw() && match.URL.absoluteString!.rangeOfString("mailto:") != nil {
                 return true;
             }
         }

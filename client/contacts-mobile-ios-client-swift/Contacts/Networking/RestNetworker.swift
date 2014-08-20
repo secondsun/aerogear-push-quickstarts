@@ -47,7 +47,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         request.HTTPMethod = "GET"
         
         // serialize request
-        if parameters {
+        if (parameters != nil) {
             let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error:nil)
             request.HTTPBody = postData
         }
@@ -66,7 +66,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         request.HTTPMethod = "POST"
         
         // serialize request
-        if parameters {
+        if parameters != nil {
             let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error:nil)
             request.HTTPBody = postData
         }
@@ -85,7 +85,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         request.HTTPMethod = "PUT"
         
         // serialize request
-        if parameters {
+        if parameters != nil {
             let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error:nil)
             request.HTTPBody = postData
         }
@@ -106,7 +106,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         request.HTTPMethod = "DELETE"
         
         // serialize request
-        if parameters {
+        if parameters != nil {
             let postData = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error:nil)
             request.HTTPBody = postData
         }
@@ -121,7 +121,7 @@ class RestNetworker: NSObject, NSURLSessionDelegate {
         completionHandler: ((NSURLResponse!, AnyObject!, NSError!) -> Void)!) -> NSURLSessionDataTask! {
             
             let task = session.dataTaskWithRequest(request) {(data, response, error) in
-                if !error {
+                if error == nil {
                     let httpResp = response as NSHTTPURLResponse
                     
                     var result: AnyObject?

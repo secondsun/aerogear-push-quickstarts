@@ -64,13 +64,13 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         
         // Note: in case the user created the contact locally, a notification will still be received by the server
         //       Since we have already added, no need to fetch it again so simple return
-        if contactWithId(recId.integerValue) {
+        if contactWithId(recId.integerValue) != nil {
             return;
         }
         
         ContactsNetworker.shared.GET("/contacts/\(recId)", parameters: nil) {(response, result, error) in
             
-            if error {
+            if error != nil {
                 var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
                 
@@ -91,7 +91,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     func displayDetailsForContactWithId(recId: NSString) {
         let contact = contactWithId(recId.integerValue)
 
-        if contact {
+        if contact != nil {
             performSegueWithIdentifier("EditContactSegue", sender: contact)
         }
     }
@@ -182,7 +182,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         if editingStyle == .Delete {
             ContactsNetworker.shared.DELETE("/contacts/\(contact!.recId!)", parameters: contact!.asDictionary()) { (response, result, error) in
                 
-                if error {
+                if error != nil {
                     var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                     alert.show()
                     
@@ -239,7 +239,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         let completionHandler = { (response: NSURLResponse!, result: AnyObject!, error: NSError!) -> () in
             self.refreshControl.endRefreshing()
             
-            if error {
+            if error != nil {
                 var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
                 
@@ -248,7 +248,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
                 self.dismissViewControllerAnimated(true, completion:nil);
                     
                 // add to our local modal
-                if (!contact.recId) {
+                if contact.recId == nil {
                     contact.recId = (result as [String: AnyObject])["id"] as? NSNumber;
                     self.addContact(contact)
                 }
@@ -258,7 +258,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             }
         }
         
-        if contact.recId { // update existing
+        if contact.recId != nil { // update existing
             ContactsNetworker.shared.PUT("/contacts/\(contact.recId!)", parameters: contact.asDictionary(), completionHandler:completionHandler)
         } else {
             ContactsNetworker.shared.POST("/contacts", parameters: contact.asDictionary(), completionHandler:completionHandler)
@@ -272,7 +272,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
             
             self.refreshControl.endRefreshing()
             
-            if error {
+            if error != nil {
                 var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
                 
@@ -292,7 +292,7 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
     
     @IBAction func logoutPressed(sender: AnyObject!) {
         ContactsNetworker.shared.logout()  {(response, result, error) in
-            if error {
+            if error != nil {
                 var alert = UIAlertView(title: "Oops!", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "Bummer")
                 alert.show()
 
@@ -383,20 +383,20 @@ class ContactsViewController: UITableViewController, UISearchBarDelegate, UISear
         // if the section exist
         if var contactsInSection = contacts[letter] {
             // add it
-            contactsInSection += contact
+            contactsInSection.append(contact)
             contactsInSection.sort({ $0.firstname < $1.firstname })
                 
             contacts[letter] = contactsInSection
             
         } else {
             // create it
-            contactsSectionTitles += letter
+            contactsSectionTitles.append(letter)
             // sort newly inserted section name
             contactsSectionTitles.sort({ $0 < $1 })
          
             // create arr to hold contacts in section
             var contactsInSection = [Contact]()
-            contactsInSection += contact
+            contactsInSection.append(contact)
             
             // assign it
             contacts[letter] = contactsInSection
