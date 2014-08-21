@@ -1,18 +1,18 @@
 /**
- * JBoss, Home of Professional Open Source
- * Copyright Red Hat, Inc., and individual contributors.
+ * JBoss, Home of Professional Open Source Copyright Red Hat, Inc., and
+ * individual contributors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
  *
- * 	http://www.apache.org/licenses/LICENSE-2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  */
 package org.jboss.aerogear.unifiedpush.quickstart.activities;
 
@@ -166,14 +166,42 @@ public class ContactActivity extends ActionBarActivity {
                 if ((textView.getId() == R.id.phone) && !(isValidPhone(textView.getText().toString()))) {
                     String errorMessage = getString(R.string.use_phone_us_format);
                     textView.setError(errorMessage);
+                    valid = false;
+                }
+                if (textView.getId() == R.id.email && !(isValidEmail(textView.getText().toString()))) {
+                    String errorMessage = getString(R.string.error_email);
+                    textView.setError(errorMessage);
+                    valid = false;
                 }
             }
         }
+
         return valid;
     }
 
     private boolean isValidPhone(String phoneNumber) {
         return phoneNumber.matches("^\\([2-9]\\d{2}\\) \\d{3}\\-\\d{4}$");
+    }
+
+    private boolean isValidEmail(String emailAddress) {
+        boolean valid = true;
+        
+        if (!emailAddress.contains("@")) {
+            valid = false;
+        } else {
+            String[] emailParts = emailAddress.split("@");
+            if (emailParts.length != 2) {
+                valid = false;
+            } else {
+                String address = emailParts[0];
+                String host = emailParts[1];
+
+                if (address.isEmpty() || host.isEmpty()) {
+                    valid = false;
+                }
+            }
+        }
+        return valid;
     }
 
     public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
