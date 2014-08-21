@@ -82,7 +82,7 @@ class ContactDetailsViewController: UITableViewController {
         
         // else time to create contact
         
-        if !(contact != nil) {
+        if (contact == nil) {
             contact = Contact()
         }
 

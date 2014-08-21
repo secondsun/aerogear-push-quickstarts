@@ -52,7 +52,7 @@ class LoginViewController: UITableViewController {
         startProgressAnimation()
         
         ContactsNetworker.shared.loginWithUsername(username, password: password) {(response, result, error) in
-            if !(error != nil) {
+            if (error == nil) {
 
                 // time to register user with the "AeroGear UnifiedPush Server"
 
