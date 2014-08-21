@@ -62,6 +62,7 @@ static let kAPIBaseURLString = "<# URL of the Contacts application backend #>";
 
 You can now build and run the application.
 
+> **NOTE:** For technical limitations, Contacts app currently embeds [aerogear-ios-push](https://github.com/aerogear/aerogear-ios-push) lib. Hopefully in the future and as the Swift language and tools around it mature, more straightforward distribution mechanisms will be employed using e.g [cocoapods](http://cocoapods.org) and framework builds. Currently neither cocoapods nor binary framework builds support Swift. For more information, consult this [mail thread](http://aerogear-dev.1069024.n5.nabble.com/aerogear-dev-Swift-Frameworks-Static-libs-and-Cocoapods-td8456.html) that describes the current situation.
 
 Application Flow
 ----------------------
