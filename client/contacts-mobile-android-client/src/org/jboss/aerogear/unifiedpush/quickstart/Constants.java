@@ -21,16 +21,16 @@ public interface Constants {
     /**
      *  This is the base url for the contacts-mobile-picketlink-secured application.
      *
-     *  For example (your IP/hostname will differ):
-     *  String BASE_URL = "http://192.168.1.157:8080/jboss-contacts-mobile-picketlink-secured";
+     *  In the case of an Android VM the host machine's address would be:
+     *  String BASE_URL = "http://10.0.2.2:8080/jboss-contacts-mobile-picketlink-secured";
      */
     String BASE_URL = "";
 
     /**
      * This is the URL to the Unified Push Server.
      *
-     * For example (your IP/hostname will differ):
-     * String UNIFIED_PUSH_URL = "http://192.168.1.157:8080/ag-push";
+     * In the case of an Android VM the host machine's address would be:
+     * String UNIFIED_PUSH_URL = "http://10.0.2.2:8080/ag-push";
      *
      */
     String UNIFIED_PUSH_URL = "";
