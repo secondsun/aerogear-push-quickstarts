@@ -180,7 +180,8 @@ public class ContactActivity extends ActionBarActivity {
     }
 
     private boolean isValidPhone(String phoneNumber) {
-        return phoneNumber.matches("^\\([2-9]\\d{2}\\) \\d{3}\\-\\d{4}$");
+        String strippedNumber = phoneNumber.replaceAll("[^a-zA-Z0-9]","").trim();
+        return strippedNumber.length() == 10;
     }
 
     private boolean isValidEmail(String emailAddress) {
